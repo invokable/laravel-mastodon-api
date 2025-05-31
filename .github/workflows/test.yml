@@ -19,10 +19,11 @@ jobs:
           extensions: mbstring, bcmath
           coverage: xdebug
       - name: Install Composer dependencies
-        run: composer install --no-interaction --no-progress  --optimize-autoloader
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v9
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: composer install -q
+      - name: Test
+        run: vendor/bin/phpunit
+      - name: Code Coverage
+        uses: qltysh/qlty-action/coverage@v1
         with:
-          coverageCommand: vendor/bin/phpunit
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: build/logs/clover.xml
