@@ -15,7 +15,7 @@ class MastodonTest extends TestCase
 
     protected Client $client;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -31,10 +31,10 @@ class MastodonTest extends TestCase
         $handler = HandlerStack::create($mock);
         $client = new Client(['handler' => $handler]);
 
-        $this->mastodon = (new MastodonClient())->setClient($client);
+        $this->mastodon = (new MastodonClient)->setClient($client);
     }
 
-    public function testCall()
+    public function test_call()
     {
         $response = $this->mastodon->apiVersion('v1')
             ->apiBase('/api/')
@@ -46,7 +46,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testGet()
+    public function test_get()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('token')
@@ -55,7 +55,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testPost()
+    public function test_post()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('token')
@@ -64,7 +64,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testRequestException()
+    public function test_request_exception()
     {
         $this->expectException(\BadMethodCallException::class);
         $this->expectExceptionMessage('does not exist.');
@@ -72,7 +72,7 @@ class MastodonTest extends TestCase
         $response = $this->mastodon->test();
     }
 
-    public function testCreateApp()
+    public function test_create_app()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->createApp('', '', '');
@@ -80,7 +80,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testVerifyCredentials()
+    public function test_verify_credentials()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('test')
@@ -89,7 +89,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testStatusList()
+    public function test_status_list()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('test')
@@ -98,7 +98,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testStatusGet()
+    public function test_status_get()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('test')
@@ -107,7 +107,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testStatusPost()
+    public function test_status_post()
     {
         $response = $this->mastodon->domain('https://example.com')
             ->token('test')
@@ -116,7 +116,7 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($response));
     }
 
-    public function testStreaming()
+    public function test_streaming()
     {
         $res = 'event: update'.PHP_EOL.'data: '.json_encode(['test' => 'test']);
 
@@ -135,19 +135,19 @@ class MastodonTest extends TestCase
         $this->assertJson('{"test": "test"}', json_encode($d));
     }
 
-    public function testMacroable()
+    public function test_macroable()
     {
         MastodonClient::macro('instance', function () {
             return $this->get('/instance');
         });
 
-        $mastodon = new MastodonClient();
+        $mastodon = new MastodonClient;
 
         $this->assertTrue(MastodonClient::hasMacro('instance'));
         $this->assertTrue(is_callable(MastodonClient::class, 'instance'));
     }
 
-    public function testResponse()
+    public function test_response()
     {
         $res = Mastodon::getResponse();
 

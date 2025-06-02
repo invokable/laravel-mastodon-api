@@ -7,7 +7,7 @@ trait Statuses
     /**
      * Get a list of statuses by a user.
      */
-    public function statuses(int $account_id, int $limit = 40, int $since_id = null): array
+    public function statuses(int $account_id, int $limit = 40, ?int $since_id = null): array
     {
         $url = "/accounts/$account_id/statuses";
 
@@ -22,7 +22,7 @@ trait Statuses
     /**
      * Create new status.
      */
-    public function createStatus(string $status, array $options = null): array
+    public function createStatus(string $status, ?array $options = null): array
     {
         $url = '/statuses';
 
