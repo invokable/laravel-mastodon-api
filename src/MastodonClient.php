@@ -12,12 +12,12 @@ use Revolution\Mastodon\Contracts\Factory;
 
 class MastodonClient implements Factory
 {
-    use Concerns\Apps;
     use Concerns\Accounts;
+    use Concerns\Apps;
     use Concerns\Statuses;
     use Concerns\Streaming;
-    use Macroable;
     use Conditionable;
+    use Macroable;
 
     protected string $api_version = 'v1';
 

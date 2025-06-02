@@ -31,7 +31,7 @@ interface Factory
 
     public function getResponse(): ?ResponseInterface;
 
-    public function statuses(int $account_id, int $limit = 40, int $since_id = null): array;
+    public function statuses(int $account_id, int $limit = 40, ?int $since_id = null): array;
 
     public function createStatus(string $status, array $options = []): array;
 

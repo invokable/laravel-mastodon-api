@@ -8,12 +8,12 @@ $token = '';
 // https://example.com/api/v1/streaming/public
 $url = '';
 
-$mastodon = new Revolution\Mastodon\MastodonClient();
+$mastodon = new Revolution\Mastodon\MastodonClient;
 
 $mastodon->token($token)
     ->streaming($url, function (string $event, string $data) {
-        //event: update|notification|delete
-        //data: JSON
+        // event: update|notification|delete
+        // data: JSON
 
         if ($event === 'update') {
             $status = json_decode($data, true);
