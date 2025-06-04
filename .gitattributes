@@ -6,3 +6,4 @@
 .gitignore export-ignore
 phpunit.xml export-ignore
 /.github export-ignore
+pint.json export-ignore
