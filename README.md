@@ -45,7 +45,7 @@ class MastodonController
 ```
 
 ### OAuth authentication
-Use https://github.com/kawax/socialite-mastodon
+Use https://github.com/invokable/socialite-mastodon
 
 Save account info.(`id`, `token`, `username`, `acct`...and more.)
 
