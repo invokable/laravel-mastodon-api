@@ -9,7 +9,9 @@
   "require": {
     "php": "^8.2",
     "ext-json": "*",
-    "illuminate/http": "^11.0||^12.0"
+    "illuminate/http": "^11.0||^12.0",
+    "revolution/laravel-notification-mastodon": "^3.5",
+    "revolution/socialite-mastodon": "^1.5"
   },
   "require-dev": {
     "orchestra/testbench": "^10.0",
@@ -38,9 +40,6 @@
       ],
       "aliases": {
         "Mastodon": "Revolution\\Mastodon\\Facades\\Mastodon"
-      },
-      "branch-alias": {
-        "dev-main": "3.x-dev"
       }
     }
   },
