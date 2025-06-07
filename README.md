@@ -11,6 +11,8 @@
 composer require revolution/laravel-mastodon-api
 ```
 
+[Socialite](https://github.com/invokable/socialite-mastodon) and [Notification](https://github.com/invokable/laravel-notification-mastodon) packages will also be installed.
+
 ## Usage
 
 ### Registering an application
