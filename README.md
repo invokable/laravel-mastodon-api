@@ -1,5 +1,7 @@
 # Mastodon API for Laravel
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/invokable/laravel-mastodon-api)
+
 ## Requirements
 - PHP >= 8.2
 - Laravel >= 11.0
