@@ -73,9 +73,12 @@ docs/
 ├── macro.md                    # Facade extension documentation
 └── trait.md                    # Model integration examples
 
+streaming_example.php           # Example script for streaming API usage
+
 .github/workflows/
 ├── test.yml                    # PHPUnit testing and coverage
-└── lint.yml                    # Code style enforcement with Pint
+├── lint.yml                    # Code style enforcement with Pint
+└── copilot-setup-steps.yml     # Copilot agent setup configuration
 ```
 
 ### Key Configuration Files
@@ -83,6 +86,7 @@ docs/
 - `composer.json`: Package definition, dependencies, and Laravel auto-discovery
 - `phpunit.xml`: Test configuration with coverage reporting
 - `pint.json`: Code style rules (Laravel preset with custom overrides)
+- `.editorconfig`: Code formatting rules for consistent style across editors
 - `.gitattributes`: Export management for clean distribution archives
 
 ### Development Workflow
@@ -90,8 +94,8 @@ docs/
 **Testing Infrastructure:**
 - Orchestra Testbench for isolated Laravel package testing
 - MockHandler integration for HTTP response simulation
-- Comprehensive test coverage with Clover XML reporting
-- GitHub Actions CI/CD with PHP 8.4 and dependency caching
+- Comprehensive test coverage with Clover XML reporting and qlty coverage integration
+- GitHub Actions CI/CD with PHP 8.4 testing and dependency caching
 
 **Code Quality:**
 - Laravel Pint for automated code style enforcement
@@ -116,9 +120,9 @@ docs/
 
 **statuses** - Method for retrieving account status timeline. Located in `src/Concerns/Statuses.php`. Supports pagination with limit and since_id parameters.
 
-**createStatus** - Method for posting new statuses to Mastodon. Located in `src/Concerns/Statuses.php`. Accepts status text and optional parameters array.
+**createStatus** - Method for posting new statuses to Mastodon. Located in `src/Concerns/Statuses.php`. Accepts status text and optional parameters array (Factory contract defines `array $options = []`).
 
-**streaming** - Method for real-time event consumption. Located in `src/Concerns/Streaming.php`. Uses Server-Sent Events with callback pattern.
+**streaming** - Method for real-time event consumption. Located in `src/Concerns/Streaming.php`. Uses direct Guzzle client with Server-Sent Events and callback pattern for persistent connections.
 
 **domain** - Configuration method for setting Mastodon instance URL. Returns static for method chaining. Required before API calls.
 
